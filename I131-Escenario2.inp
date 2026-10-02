@@ -1,0 +1,663 @@
+$OMP = 8
+[title]
+I-131 Escenario 2: Fuente uniforme + Tejido heterogeneo
+
+[parameters]
+ icntl    =    0    # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =       1E04    # (D=10) number of particles per one batch
+ maxbch   =       50  # (D=10) number of batches
+ file(6)  = phits.out       # (D=phits.out) general output file name
+ negs = 1
+ e-mode = 2
+ emin(12) = 0.001
+ emin(13) = 0.001
+ emin(14) = 0.001
+
+[source]
+$ ---------------------------------------------------------------------------
+$ Escenario 2 de 4 (anteproyecto): fuente UNIFORME (igual que Escenario 1)
+$ + tejido HETEROGENEO (insercion de alto contraste dentro de cada zona
+$ activa, ver [Cell] mas abajo). Aisla el efecto de la heterogeneidad de
+$ TEJIDO solo (sin heterogeneidad de fuente).
+$ ---------------------------------------------------------------------------
+   totfact = 2.0
+     <source>  = 1.00
+     s-type =  22             # xyz-mesh distribution source
+     proj =   electron      # kind of incident particle
+      dir =  all           # isotropico
+       e-type = 28
+       ni = 1   # 1 fuente
+       I-131 1E6
+       norm = 1   # /source
+       dtime = 0
+       isbias = 2   # misma cantidad de historias en cada voxel activo,
+                     # ajustando el peso estadistico (ver manual s-type=22)
+     mesh =  xyz
+   x-type =    2
+       nx =   11
+     xmin = -22E-1
+     xmax =  22E-1
+   y-type =    2
+       ny =   -11
+     ymin = -22E-1
+     ymax =  22E-1
+   z-type =    2
+       nz =   11
+     zmin = -22E-1
+     zmax =  22E-1
+$ tabla de intensidades I_ijk: 11 capas (z, de zmin a zmax), cada una
+$ de 11 filas (y, de ymin a ymax) por 11 columnas (x, de xmin a xmax)
+$ capa z=1
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=2
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=3
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=4
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=5
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=6
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=7
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=8
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=9
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=10
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=11
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+
+           <source>  = 1.00
+     s-type =  22             # xyz-mesh distribution source
+     proj =   photon      # kind of incident particle
+      dir =  all           # isotropico
+       e-type = 28
+       ni = 1   # 1 fuente
+       I-131 1E6
+       norm = 1   # /source
+       dtime = -10 #(segundos)
+       isbias = 2   # misma cantidad de historias en cada voxel activo,
+                     # ajustando el peso estadistico (ver manual s-type=22)
+     mesh =  xyz
+   x-type =    2
+       nx =   11
+     xmin = -22E-1
+     xmax =  22E-1
+   y-type =    2
+       ny =   -11
+     ymin = -22E-1
+     ymax =  22E-1
+   z-type =    2
+       nz =   11
+     zmin = -22E-1
+     zmax =  22E-1
+$ tabla de intensidades I_ijk: 11 capas (z, de zmin a zmax), cada una
+$ de 11 filas (y, de ymin a ymax) por 11 columnas (x, de xmin a xmax)
+$ capa z=1
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=2
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=3
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=4
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=5
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=6
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=7
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=8
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=9
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=10
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+$ capa z=11
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+
+[ M a t e r i a l ]
+m1    # Tejido tiroideo: densidad de referencia 1.05 g/cm3 (ICRP
+      # Publication 89) y composicion elemental de tejido blando de 4
+      # componentes (ICRU Report 44), utilizada como sustituto por no
+      # existir una entrada especifica de tiroides en esa base de datos.
+         1H       -0.102000
+        12C       -0.143000
+        14N       -0.034000
+        16O       -0.708000
+        23Na      -0.002000
+        31P       -0.003000
+        32S       -0.003000
+        35Cl      -0.002000
+        39K       -0.003000
+m2    # Insercion de prueba, de alto contraste (Bone, Compact, ICRU-44,
+      # 1.85 g/cm3). Se utiliza como objeto generico para evaluar el
+      # efecto de una inhomogeneidad de densidad local dentro del tejido
+      # tiroideo; no representa una patologia especifica.
+
+         1H       -0.063984
+        12C       -0.278000
+        14N       -0.027000
+        16O       -0.410016
+        24Mg      -0.002000
+        31P       -0.070000
+        32S       -0.002000
+        40Ca      -0.147000
+
+[ Mat Name Color ]
+mat  name       size  color
+  0  void          1    lightgray
+  1  Tiroides      1    pastelcyan
+  2  Insercion     1    orangeyellow
+
+[ C e l l ]
+
+$ Material universe
+ 1   0         -99  u=1
+ 2   1  -1.05  -99  u=2
+ 3   2  -1.85  -99  u=3
+
+$ Voxel universe (2 = tejido tiroideo m1, 3 = insercion de alto contraste m2).
+$ La insercion, cuando corresponde, se ubica dentro del voxel activo de
+$ cada zona de fuente (ver comentario en [source]), para poder estudiar
+$ el efecto local de la inhomogeneidad justo donde hay actividad.
+ 101  0  -101
+      lat=1 u=10
+      fill=0:10 0:10 0:10
+      2 2 2 2 2 2 2 2 2 2 2   $1  $ Eje X ->
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $3
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $4
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $5 (vecino inferior, z=5)
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 3 3 2 2 2 2 2 2 2
+      2 2 3 3 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $6 Capa central
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 3 3 3 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $7 (vecino superior, z=7)
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 3 3 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $8
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $9
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $10
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+
+      2 2 2 2 2 2 2 2 2 2 2   $11
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+      2 2 2 2 2 2 2 2 2 2 2
+$ Main space
+ 201  0  -201  fill=10   $ Region filled with voxel phantom
+
+ 204  0  -99   201    $ Void
+ 205 -1   99             $ Outer region
+
+[ surface ]
+set: c1[1.0e-4]
+$ fundamental voxel
+101 rpp  -22E-1 -18E-1  -22E-1 -18E-1  -22E-1 -18E-1
+99 so 100
+$ Main space
+201 rpp -22E-1+c1 22E-1-c1 -22E-1+c1 22E-1-c1 -22E-1+c1 22E-1-c1
+
+[ T - T r a c k ]
+     mesh =  xyz
+   x-type =    2
+       nx =  100
+     xmin =  -25E-1
+     xmax =   25E-1
+   y-type =    2
+       ny =  100
+     ymin =  -25E-1
+     ymax =   25E-1
+   z-type =    2
+       nz =   11
+     zmin =  -22E-1
+     zmax =   22E-1
+     part =  electron photon
+   e-type =    1
+       ne =    1
+            0.0  1000.0
+     unit =    1
+     axis =   xy
+     file = Track-Escenario.out
+    title = Track - I-131 Escenario 2: Fuente uniforme + Tejido heterogeneo
+    gshow =    2            # 2: bnd+mat, para distinguir tiroides/insercion
+   epsout =    1
+
+[ T-Deposit ]
+  mesh = xyz
+  x-type = 2
+  nx = 11
+  xmin = -22E-1
+  xmax =  22.0E-1
+  y-type = 2
+  ny = 11
+  ymin = -22.0E-1
+  ymax = 22.0E-1
+  z-type = 2
+  nz = 11
+  zmin = -22.0E-1
+  zmax =  22.0E-1
+  axis = xy
+  output = dose
+  unit = 0
+  title = Dose - total (I-131 Escenario 2: Fuente uniforme + Tejido heterogeneo)
+  file = robot-deposit-xz.out
+  gshow = 2
+  epsout = 1
+  material = all
+  part = all
+
+[ T-Deposit ]
+  mesh = xyz
+  x-type = 2
+  nx = 11
+  xmin = -22E-1
+  xmax =  22.0E-1
+  y-type = 2
+  ny = 11
+  ymin = -22.0E-1
+  ymax = 22.0E-1
+  z-type = 2
+  nz = 11
+  zmin = -22.0E-1
+  zmax =  22.0E-1
+  axis = xy
+  output = dose
+  unit = 0
+  title = Dose - electrones (beta)
+  file = deposit_electron.out
+  gshow = 1
+  epsout = 0
+  material = all
+  part = electron
+
+[ T-Deposit ]
+  mesh = xyz
+  x-type = 2
+  nx = 11
+  xmin = -22E-1
+  xmax =  22.0E-1
+  y-type = 2
+  ny = 11
+  ymin = -22.0E-1
+  ymax = 22.0E-1
+  z-type = 2
+  nz = 11
+  zmin = -22.0E-1
+  zmax =  22.0E-1
+  axis = xy
+  output = dose
+  unit = 0
+  title = Dose - fotones (gamma)
+  file = deposit_photon.out
+  gshow = 1
+  epsout = 0
+  material = all
+  part = photon
+
+[ T - 3Dshow ]
+    title = [t-3dshow: icnt = 11]
+     file = robot-3D.out
+       x0 =  0.000000
+       y0 =  0.000000
+       z0 =  0.000000
+    e-the =  60.0000
+    e-phi =  290.00000
+    l-the =  40.0000
+    l-phi =  310.00000
+    w-wdt =  60.0000
+    w-hgt =  60.00000
+    w-dst =  60.00000
+    w-mnw =  50
+    w-mnh =  50
+   heaven =    z
+    w-ang =  0.000000
+   bright = 1.0000000
+     dark = 0.2000000
+    resol =   20
+    width = 0.1000000
+    r-out =  50000.00
+   output =    3
+material = -1
+           1     $ oculta el material 1 (tiroides): la queda "transparente"
+                 $ para ver directo la insercion (material 2) enterrada
+                 $ adentro, sin tener que pasar pagina por pagina en Sumatra
+     line =    0
+   shadow =    1
+   epsout =    1
+
+[end]
